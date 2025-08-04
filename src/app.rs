@@ -52,6 +52,10 @@ impl Application for AssistantApp {
             Message::OpenSettings => {
                 println!("⚙️ Open settings clicked (not implemented yet)");
             }
+
+            Message::TakeScreenshot => {
+                println!("Take screenshot! Not implemented yet!");
+            }
         }
         Command::none()
     }

@@ -1,6 +1,6 @@
 use crate::message::Message;
 use crate::ui;
-use iced::{executor, Application, Command, Element, Theme};
+use iced::{executor, Application, Command, Element, Theme, window};
 
 pub struct AssistantApp {
     pub input_value: String,
@@ -33,13 +33,16 @@ impl Application for AssistantApp {
 
     fn update(&mut self, message: Message) -> Command<Message> {
         match message {
+            Message::ShowWindow => window::change_mode(window::Mode::Windowed),
+            Message::HideWindow => window::change_mode(window::Mode::Hidden),
+
             Message::InputChanged(val) => {
                 self.input_value = val;
+                Command::none()
             }
             Message::SendPressed => {
                 if !self.input_value.trim().is_empty() {
-                    self.messages
-                        .push(("User".into(), self.input_value.trim().to_string()));
+                    self.messages.push(("User".into(), self.input_value.trim().to_string()));
 
                     // Simulated AI response
                     self.messages.push((
@@ -48,16 +51,13 @@ impl Application for AssistantApp {
                     ));
                     self.input_value.clear();
                 }
+                Command::none()
             }
             Message::OpenSettings => {
                 println!("⚙️ Open settings clicked (not implemented yet)");
-            }
-
-            Message::TakeScreenshot => {
-                println!("Take screenshot! Not implemented yet!");
+                Command::none()
             }
         }
-        Command::none()
     }
 
     fn view(&self) -> Element<Message> {

@@ -3,7 +3,9 @@ pub enum Message {
     InputChanged(String),
     SendPressed,
     OpenSettings,
-    TakeScreenshot
+
+    ShowWindow,
+    HideWindow,
 
 }
 

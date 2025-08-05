@@ -1,6 +1,7 @@
 mod app;
 mod message;
 mod ui;
+mod screenshot;
 
 use app::AssistantApp;
 use iced::{Application, Settings};

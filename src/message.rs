@@ -6,6 +6,7 @@ pub enum Message {
 
     ShowWindow,
     HideWindow,
+    TakeScreenshot
 
 }
 

@@ -1,4 +1,5 @@
-use crate::message::Message;
+
+use crate::{message::Message, screenshot};
 use crate::ui;
 use iced::{executor, Application, Command, Element, Theme, window};
 
@@ -55,6 +56,14 @@ impl Application for AssistantApp {
             }
             Message::OpenSettings => {
                 println!("⚙️ Open settings clicked (not implemented yet)");
+                Command::none()
+            }
+            
+            Message::TakeScreenshot => {
+                println!("Take screenshot!");
+                if let Err(e) = screenshot::take_screenshot() {
+                    eprintln!("Error taking screenshot! {}", e);
+                }
                 Command::none()
             }
         }

@@ -24,15 +24,3 @@ pub fn build_chat_window(messages: &[(String, String)]) -> Element<Message> {
         .into()
 }
 
-pub fn build_message_bubble(sender: &str, message: &str) -> Element<'static, Message> {
-    let message_style = if sender == "User" {
-        theme::Text::Color([0.7, 0.9, 1.0].into()) // Light blue for user
-    } else {
-        theme::Text::Color([0.9, 0.9, 0.9].into()) // Light gray for AI
-    };
-
-    text(format!("[{}]: {}", sender, message))
-        .size(15)
-        .style(message_style)
-        .into()
-}

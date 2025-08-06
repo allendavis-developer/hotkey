@@ -6,6 +6,7 @@ use iced::{executor, Application, Command, Element, Theme, window};
 pub struct AssistantApp {
     pub input_value: String,
     pub messages: Vec<(String, String)>, // (sender, message)
+    hotkey_receiver: Option<std::sync::mpsc::Receiver<crate::hotkey::HotkeyMessage>>,
 }
 
 impl Application for AssistantApp {
@@ -23,6 +24,7 @@ impl Application for AssistantApp {
                     ("AI".into(), "Looks like cell B5 has a syntax error.".into()),
                     ("AI".into(), "Press the hotkey again to share more context.".into()),
                 ],
+                hotkey_receiver: crate::hotkey::setup_hotkeys()
             },
             Command::none(),
         )
